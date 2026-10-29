@@ -7,7 +7,7 @@ namespace Application.Services;
 public class StudentService(StudentRepository studentRepository) : IStudentService
 {
     private StudentRepository _repository = studentRepository;
-    public void AddStudent(Student student)
+    public async Task AddStudent(Student student)
     {
         var result =  _repository.AddStudent(student);
         if(result) System.Console.WriteLine("Added successfully!");
