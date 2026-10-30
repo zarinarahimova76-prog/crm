@@ -24,3 +24,4 @@
 /Users/rahimova/Desktop/CRM/ConsoleApp/obj/Debug/net10.0/ConsoleApp.csproj.Up2Date
 /Users/rahimova/Desktop/CRM/ConsoleApp/bin/Debug/net10.0/Application.dll
 /Users/rahimova/Desktop/CRM/ConsoleApp/bin/Debug/net10.0/Application.pdb
+/Users/rahimova/Desktop/CRM/ConsoleApp/obj/Debug/net10.0/ConsoleApp.sourcelink.json

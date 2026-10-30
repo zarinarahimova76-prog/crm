@@ -1,42 +1,58 @@
+
 using Application.Interfaces;
+using Domain.Interfaces;
 using Domain.Models;
-using Infrastructure.Repositories;
 
 namespace Application.Services;
 
-public class MentorService(MentorRepository mentorRepository): IMentorService
+public class MentorService(IMentorRepository mentorRepository) : IMentorService
 {
-    private MentorRepository _repo = mentorRepository;
+    private IMentorRepository _repo = mentorRepository;
 
     public async Task AddMentorAsync(Mentor mentor)
     {
         var res = await _repo.AddMentorAsync(mentor);
-        if(res) System.Console.WriteLine("Added!");
-        else System.Console.WriteLine("Smth went wrong!");
+
+        if (res)
+            Console.WriteLine("Added!");
+        else
+            Console.WriteLine("Something went wrong!");
     }
 
     public async Task DeleteMentorAsync(int mentorId)
     {
         var res = await _repo.DeleteMentorAsync(mentorId);
-        if(res) System.Console.WriteLine("Deleted!");
-        else System.Console.WriteLine("Smth went wrong!");
+
+        if (res)
+            Console.WriteLine("Deleted!");
+        else
+            Console.WriteLine("Something went wrong!");
     }
 
     public async Task GetAllMentorsAsync()
     {
-        await _repo.GetMentorsAsync();
+        var mentors = await _repo.GetMentorsAsync();
+
+        foreach (var mentor in mentors)
+        {
+            Console.WriteLine($"{mentor.MentorId} {mentor.Fullname} {mentor.Email} {mentor.Phone} {mentor.Specialization}");
+        }
     }
 
     public async Task GetMentorAsync(int mentorId)
     {
-        await _repo.GetMentorAsync(mentorId);
+        var mentor = await _repo.GetMentorAsync(mentorId);
+
+        Console.WriteLine($"{mentor.MentorId} {mentor.Fullname} {mentor.Email} {mentor.Phone} {mentor.Specialization}");
     }
 
     public async Task UpdateMentorAsync(Mentor mentor)
     {
         var res = await _repo.UpdateMentorAsync(mentor);
-        if(res) System.Console.WriteLine("Updated!");
-        else System.Console.WriteLine("Smth went wrong!");
-    }
 
+        if (res)
+            Console.WriteLine("Updated!");
+        else
+            Console.WriteLine("Something went wrong!");
+    }
 }
